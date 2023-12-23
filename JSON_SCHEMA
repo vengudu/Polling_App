@@ -1,0 +1,21 @@
+Rest Endpoint : https://localhost:8080/v1/users/new
+
+Request Schema : 
+
+{
+"userName":"xxx",
+"password":"xxx",
+"email":"xxx@xxx.com",
+"roles":"ROLE_USER"
+}
+
+Response Schema :
+
+{
+    "id": 1,
+    "userName": "xxx",
+    "email": "xxx@yahoo.com",
+    "password": "$2a$10$FaFdXroYfjjsWoLXE10qMeloZvYI2ru7k4UYAcWsVOByHTfDClSxy",
+    "roles": "ROLE_USER"
+}
+	    

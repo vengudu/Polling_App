@@ -11,33 +11,35 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-*
-* @author venkat
-*/
+ *
+ * @author venkat
+ */
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserInfo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(unique=true)
-    private String userName;
-    private String email;
-    private String password;
-    private String roles;
-//    
-//    @OneToOne
-//    private PollSession pollSession;
-    
-    
-//	public PollSession getPollSession() {
-//		return pollSession;
-//	}
-//	public void setPollSession(PollSession pollSession) {
-//		this.pollSession = pollSession;
-//	}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Column(unique=true)
+	private String userName;
+	private String email;
+	private String password;
+	private String roles;
+
+
+	public UserInfo(String userName, String email, String password, String roles) {
+		super();
+		this.userName = userName;
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
+	}
+	public UserInfo() {
+
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -68,6 +70,6 @@ public class UserInfo {
 	public void setRoles(String roles) {
 		this.roles = roles;
 	}
-    
-    
+
+
 }

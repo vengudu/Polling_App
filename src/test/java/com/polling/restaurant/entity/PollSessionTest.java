@@ -23,36 +23,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class PollSession implements Serializable {
+public class PollSessionTest implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	private String sessionName;
-	private String userName;
+    private String sessionName;
+    private String userName;
 
-	@Column(name = "START_DATE", columnDefinition = "DATE DEFAULT CURRENT_DATE")
-	private Date createdDate;
+    @Column(name = "START_DATE", columnDefinition = "DATE DEFAULT CURRENT_DATE")
+    private Date createdDate;
+    
+    @OneToMany(targetEntity = Options.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "pollSession")
+    private List<Options> options;
 
-	@OneToMany(targetEntity = Options.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "pollSession")
-	private List<Options> options;
-
-
-	public PollSession() {
+    public PollSessionTest() {
 		super();
-
 	}
-	public PollSession(Boolean isActive, String userName, Date createdDate) {
-		super();
-		this.userName = userName;
-		this.createdDate = createdDate;
-		this.isActive = isActive;
-	}
-
-
 
 	private Boolean isActive = false;
 
