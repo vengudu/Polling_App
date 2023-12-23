@@ -1,6 +1,7 @@
 package com.polling.restaurant.repository;
 
 import com.polling.restaurant.entity.Options;
+import com.polling.restaurant.repository.OptionRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

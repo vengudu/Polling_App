@@ -2,6 +2,7 @@ package com.polling.restaurant.services;
 
 import com.polling.restaurant.entity.UserInfo;
 import com.polling.restaurant.repository.UserInfoRepository;
+import com.polling.restaurant.services.UserInfoUserDetailsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

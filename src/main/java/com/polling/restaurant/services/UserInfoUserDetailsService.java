@@ -1,7 +1,7 @@
 package com.polling.restaurant.services;
 
-import java.util.Optional;
-
+import com.polling.restaurant.entity.UserInfo;
+import com.polling.restaurant.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,8 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.polling.restaurant.entity.UserInfo;
-import com.polling.restaurant.repository.UserInfoRepository;
+import java.util.Optional;
 
 /**
 *

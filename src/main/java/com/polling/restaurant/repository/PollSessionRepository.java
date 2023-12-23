@@ -1,10 +1,9 @@
 package com.polling.restaurant.repository;
 
-import java.util.List;
-
+import com.polling.restaurant.entity.PollSession;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.polling.restaurant.entity.PollSession;
+import java.util.List;
 
 
 /**

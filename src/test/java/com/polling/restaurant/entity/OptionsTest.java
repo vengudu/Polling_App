@@ -1,9 +1,11 @@
 package com.polling.restaurant.entity;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import java.sql.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -14,10 +16,14 @@ class OptionsTest {
     @Autowired
     private TestEntityManager entityManager;
 
+    OptionsTest(TestEntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
     @Test
     void testSaveAndRetrieveOptions() {
         // Arrange
-        PollSession pollSession = new PollSession();
+        PollSession pollSession = new PollSession(false,"",new Date(System.currentTimeMillis()));
         entityManager.persist(pollSession);
 
         Options options = new Options("Option1", "User1", pollSession);
@@ -35,7 +41,7 @@ class OptionsTest {
     @Test
     void testGetterAndSetterMethods() {
         // Arrange
-        Options options = new Options();
+        Options options = new Options("","",new PollSession(false,"",new Date(System.currentTimeMillis())));
 
         // Act
         options.setId(1L);

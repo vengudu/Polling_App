@@ -1,17 +1,12 @@
 package com.polling.restaurant.entity;
 
-import java.io.Serializable;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  *
@@ -49,11 +44,6 @@ public class Options implements Serializable {
 
 	public void setPollSession(PollSession pollSession) {
 		this.pollSession = pollSession;
-	}
-
-	public Options() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Options(String option, String userName, PollSession pollSession) {

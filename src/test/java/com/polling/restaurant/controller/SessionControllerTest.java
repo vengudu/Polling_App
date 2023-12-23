@@ -1,11 +1,9 @@
 package com.polling.restaurant.controller;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import java.security.Principal;
-
+import com.polling.restaurant.controller.SessionController;
+import com.polling.restaurant.entity.Options;
+import com.polling.restaurant.entity.PollSession;
+import com.polling.restaurant.services.PollSessionService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,9 +12,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.polling.restaurant.entity.Options;
-import com.polling.restaurant.entity.PollSession;
-import com.polling.restaurant.services.PollSessionService;
+import java.security.Principal;
+import java.sql.Date;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class SessionControllerTest {
@@ -62,7 +63,7 @@ public class SessionControllerTest {
 
     @Test
     public void testDeactivateSession() {
-        PollSession pollSession = new PollSession();
+        PollSession pollSession = new PollSession(false, "userName",new Date(System.currentTimeMillis()));
         RedirectAttributes redirectAttributes = mock(RedirectAttributes.class);
         Principal principal = mock(Principal.class);
         when(principal.getName()).thenReturn("testUser");

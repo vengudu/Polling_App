@@ -1,20 +1,17 @@
 package com.polling.restaurant.services;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Random;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+import com.polling.restaurant.entity.Options;
+import com.polling.restaurant.entity.PollSession;
 
+import com.polling.restaurant.repository.PollSessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.polling.restaurant.entity.Options;
-import com.polling.restaurant.entity.PollSession;
-import com.polling.restaurant.repository.OptionRepository;
-import com.polling.restaurant.repository.PollSessionRepository;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Random;
 
 /**
  *
@@ -36,7 +33,7 @@ public class PollSessionService {
 	@Autowired
 	private PollSessionRepository sessionRepository;
 	@Autowired
-	private OptionRepository optionRepository;
+	private com.polling.restaurant.repository.OptionRepository optionRepository;
 
 	@Autowired
 	public PollSessionService() {
@@ -126,7 +123,7 @@ public class PollSessionService {
 
 			PollSession session = sessionRepository.findByIsActive(true);
 			
-			return session != null ? session : null;
+			return session;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

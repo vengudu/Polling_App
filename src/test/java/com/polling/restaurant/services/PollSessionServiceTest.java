@@ -10,11 +10,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 class PollSessionServiceTest {
@@ -30,23 +30,23 @@ class PollSessionServiceTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
     void testCreatePollSession() {
         // Arrange
-        PollSession session = new PollSession();
+        PollSession pollSession = new PollSession(false, "userName",new Date(System.currentTimeMillis()));
         when(sessionRepository.findByIsActive(true)).thenReturn(null);
-        when(sessionRepository.save(session)).thenReturn(session);
+        when(sessionRepository.save(pollSession)).thenReturn(pollSession);
 
         // Act
-        String status = pollSessionService.createPollSession(session);
+        String status = pollSessionService.createPollSession(pollSession);
 
         // Assert
         assertEquals("Session Created successfully", status);
         verify(sessionRepository, times(1)).findByIsActive(true);
-        verify(sessionRepository, times(1)).save(session);
+        verify(sessionRepository, times(1)).save(pollSession);
     }
 
     @Test

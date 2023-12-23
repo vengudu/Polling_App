@@ -1,5 +1,8 @@
 package com.polling.restaurant.controller;
 
+import com.polling.restaurant.entity.UserInfo;
+import com.polling.restaurant.response.ErrorResponse;
+import com.polling.restaurant.services.UserInfoUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -8,10 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.polling.restaurant.entity.UserInfo;
-import com.polling.restaurant.response.ErrorResponse;
-import com.polling.restaurant.services.UserInfoUserDetailsService;
 
 /**
 *

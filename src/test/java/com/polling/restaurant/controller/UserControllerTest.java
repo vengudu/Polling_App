@@ -1,5 +1,6 @@
 package com.polling.restaurant.controller;
 
+import com.polling.restaurant.controller.UserController;
 import com.polling.restaurant.entity.UserInfo;
 import com.polling.restaurant.response.ErrorResponse;
 import com.polling.restaurant.services.UserInfoUserDetailsService;
@@ -27,7 +28,7 @@ public class UserControllerTest {
 
     @Test
     public void testAddNewUser_Success()  throws Exception{
-        UserInfo userInfo = new UserInfo();
+        UserInfo userInfo = new UserInfo("userName", "email", "password", "roles");
         when(service.addUser(any(UserInfo.class))).thenReturn(userInfo);
 
         ResponseEntity<?> responseEntity = userController.addNewUser(userInfo);
@@ -38,7 +39,7 @@ public class UserControllerTest {
 
     @Test
     public void testAddNewUser_DataIntegrityViolationException()  throws Exception{
-        UserInfo userInfo = new UserInfo();
+        UserInfo userInfo = new UserInfo("userName", "email", "password", "roles");
         when(service.addUser(any(UserInfo.class))).thenThrow(new DataIntegrityViolationException("Duplicate key"));
 
         ResponseEntity<?> responseEntity = userController.addNewUser(userInfo);
@@ -49,7 +50,7 @@ public class UserControllerTest {
 
     @Test
     public void testAddNewUser_GenericException() throws Exception{
-        UserInfo userInfo = new UserInfo();
+        UserInfo userInfo = new UserInfo("userName", "email", "password", "roles");
         when(service.addUser(any(UserInfo.class))).thenThrow(new RuntimeException("Some error occurred"));
 
         ResponseEntity<?> responseEntity = userController.addNewUser(userInfo);

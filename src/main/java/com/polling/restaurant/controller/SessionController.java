@@ -1,9 +1,9 @@
 package com.polling.restaurant.controller;
 
 
-import java.security.Principal;
-import java.sql.Date;
-
+import com.polling.restaurant.entity.Options;
+import com.polling.restaurant.entity.PollSession;
+import com.polling.restaurant.services.PollSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.polling.restaurant.entity.Options;
-import com.polling.restaurant.entity.PollSession;
-import com.polling.restaurant.services.PollSessionService;
+import java.security.Principal;
+import java.sql.Date;
 
 /**
  *
@@ -34,8 +33,7 @@ public class SessionController {
     public String home(Model model, Principal principal) {
     	
     	model.addAttribute("loggedinUser",principal.getName());
-     	model.addAttribute("isSessionUser",sessionService.getActivePollSession() != null ? sessionService.getActivePollSession().getUserName().equalsIgnoreCase(principal.getName())
-     			: false);
+     	model.addAttribute("isSessionUser", sessionService.getActivePollSession() != null && sessionService.getActivePollSession().getUserName().equalsIgnoreCase(principal.getName()));
     	model.addAttribute("isActive",sessionService.getActivePollSession() != null ? sessionService.getActivePollSession().getIsActive(): false); 	
     	
     	return "index";
@@ -45,8 +43,7 @@ public class SessionController {
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public String activateSession(Model model,Principal principal) {
     	model.addAttribute("loggedinUser",principal.getName());
-    	model.addAttribute("isSessionUser",sessionService.getActivePollSession() != null ? sessionService.getActivePollSession().getUserName().equalsIgnoreCase(principal.getName())
-     			: false);
+    	model.addAttribute("isSessionUser", sessionService.getActivePollSession() != null && sessionService.getActivePollSession().getUserName().equalsIgnoreCase(principal.getName()));
     	model.addAttribute("pollsession",sessionService.getActivePollSession() != null ? sessionService.getActivePollSession() : new PollSession());
     	model.addAttribute("isActive",sessionService.getActivePollSession() != null ? sessionService.getActivePollSession().getIsActive(): false);
     	return "activateSession";
@@ -57,8 +54,7 @@ public class SessionController {
     public String getActiveSession(Model model,Principal principal) {
     	model.addAttribute("loggedinUser",principal.getName());
     	model.addAttribute("options",new Options(null, null, null));
-    	model.addAttribute("isSessionUser",sessionService.getActivePollSession() != null ? sessionService.getActivePollSession().getUserName().equalsIgnoreCase(principal.getName())
-     			: false);
+    	model.addAttribute("isSessionUser", sessionService.getActivePollSession() != null && sessionService.getActivePollSession().getUserName().equalsIgnoreCase(principal.getName()));
     	
     	model.addAttribute("activepoll",sessionService.getActivePollSession() != null ? sessionService.getActivePollSession(): null);
     	model.addAttribute("optionsDetails",sessionService.getActivePollSession() != null ? sessionService.getActivePollSession().getOptions(): null);

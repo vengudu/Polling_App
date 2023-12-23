@@ -1,97 +1,73 @@
 package com.polling.restaurant.entity;
 
-import java.io.Serializable;
+import com.polling.restaurant.entity.Options;
+import com.polling.restaurant.entity.PollSession;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-/**
- *
- * @author venkat
- */
+public class PollSessionTest {
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-public class PollSessionTest implements Serializable {
+	private static PollSession pollSession;
 
-    private static final long serialVersionUID = 1L;
-
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    private String sessionName;
-    private String userName;
-
-    @Column(name = "START_DATE", columnDefinition = "DATE DEFAULT CURRENT_DATE")
-    private Date createdDate;
-    
-    @OneToMany(targetEntity = Options.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "pollSession")
-    private List<Options> options;
-
-    public PollSessionTest() {
-		super();
+	@BeforeAll
+	public static void setUp() {
+		pollSession = new PollSession(false,"user",new Date(System.currentTimeMillis()));
 	}
 
-	private Boolean isActive = false;
-
-	public Long getId() {
-		return id;
+	@Test
+	public void testGetSetId() {
+		Long id = 1L;
+		pollSession.setId(id);
+		assertEquals(id, pollSession.getId());
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	@Test
+	public void testGetSetSessionName() {
+		String sessionName = "TestSession";
+		pollSession.setSessionName(sessionName);
+		assertEquals(sessionName, pollSession.getSessionName());
 	}
 
-	public String getSessionName() {
-		return sessionName;
+	@Test
+	public void testGetSetUserName() {
+		String userName = "TestUser";
+		pollSession.setUserName(userName);
+		assertEquals(userName, pollSession.getUserName());
 	}
 
-	public void setSessionName(String sessionName) {
-		this.sessionName = sessionName;
+	@Test
+	public void testGetSetCreatedDate() {
+		Date createdDate = new Date(System.currentTimeMillis());
+		pollSession.setCreatedDate(createdDate);
+		assertEquals(createdDate, pollSession.getCreatedDate());
 	}
 
-	public List<Options> getOptions() {
-		return options;
+	@Test
+	public void testGetSetOptions() {
+		List<Options> options = new ArrayList<>();
+		Options option1 = new Options();
+		Options option2 = new Options();
+
+		options.add(option1);
+		options.add(option2);
+
+		pollSession.setOptions(options);
+
+		assertNotNull(pollSession.getOptions());
+		assertEquals(options.size(), pollSession.getOptions().size());
 	}
 
-	public void setOptions(List<Options> options) {
-		this.options = options;
+	@Test
+	public void testGetSetIsActive() {
+		Boolean isActive = true;
+		pollSession.setIsActive(isActive);
+		assertEquals(isActive, pollSession.getIsActive());
 	}
-
-	public Boolean getIsActive() {
-		return isActive;
-	}
-
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
 }
