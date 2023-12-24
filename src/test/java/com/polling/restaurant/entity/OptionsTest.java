@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class OptionsTest {
 
     @Autowired
-    private TestEntityManager entityManager;
+    private final TestEntityManager entityManager;
 
     OptionsTest(TestEntityManager entityManager) {
         this.entityManager = entityManager;
