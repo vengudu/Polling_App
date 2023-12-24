@@ -13,8 +13,7 @@ import java.util.List;
  * @author venkat
  */
 
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Entity
 public class PollSession implements Serializable {
 
@@ -33,6 +32,9 @@ public class PollSession implements Serializable {
 	@OneToMany(targetEntity = Options.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "pollSession")
 	private List<Options> options;
 
+
+	public PollSession() {
+	}
 
 	public PollSession(Boolean isActive, String userName, Date createdDate) {
 		super();

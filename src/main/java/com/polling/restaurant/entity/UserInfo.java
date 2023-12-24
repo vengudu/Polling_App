@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
  */
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class UserInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +33,10 @@ public class UserInfo {
 	public int getId() {
 		return id;
 	}
+
+	public UserInfo() {
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}

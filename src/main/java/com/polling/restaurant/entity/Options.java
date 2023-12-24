@@ -12,8 +12,6 @@ import java.io.Serializable;
  *
  * @author Venkat
  */
-@NoArgsConstructor
-@AllArgsConstructor
 @Setter
 @Getter
 @Entity
@@ -51,6 +49,9 @@ public class Options implements Serializable {
 		this.option = option;
 		this.userName = userName;
 		this.pollSession = pollSession;
+	}
+
+	public Options() {
 	}
 
 	@ManyToOne
